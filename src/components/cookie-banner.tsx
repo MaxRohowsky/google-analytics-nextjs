@@ -2,15 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { getLocalStorage, setLocalStorage } from "@/lib/storage-helper";
-import { Button } from "./ui/button";
-import Image from "next/image";
 
 export default function CookieBanner() {
     const [cookieConsent, setCookieConsent] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const storedCookieConsent = getLocalStorage("mot_cookie_consent", null);
+        const storedCookieConsent = getLocalStorage("cookie_consent", null);
         console.log("Cookie Consent retrieved from storage: ", storedCookieConsent);
         setCookieConsent(storedCookieConsent);
         setIsLoading(false);
@@ -18,7 +16,7 @@ export default function CookieBanner() {
 
     useEffect(() => {
         if (cookieConsent !== null) {
-            setLocalStorage("mot_cookie_consent", cookieConsent);
+            setLocalStorage("cookie_consent", cookieConsent);
         }
 
         const newValue = cookieConsent ? "granted" : "denied";
@@ -37,39 +35,59 @@ export default function CookieBanner() {
     }
 
 
-
-    // If cookie is set to true or false, the first ternary operator will hide the banner
-    // https://gaudion.dev/blog/setup-google-analytics-with-gdpr-compliant-cookie-consent-in-nextjs13
     return (
         <div
-            className={`my-10 ${cookieConsent == null ? "" : "hidden"} fixed bottom-0 left-0 right-0 sm:left-auto sm:mr-6
-        mx-auto max-w-fit z-30`}
+            style={{
+                marginTop: '2.5rem',
+                display: cookieConsent == null ? 'block' : 'none',
+                position: 'fixed',
+                bottom: 40,
+                left: 0,
+                right: 0,
+                margin: '0 auto',
+                maxWidth: 'fit-content',
+                zIndex: 30,
+            }}
         >
-            <div className="relative">
-                <Image src="/pookie.png" alt="Cookie" className="absolute -top-[34px] right-7   " width={50} height={50} />
-
-                <div className=" bg-white dark:bg-black border border-gray-200 dark:border-gray-600 flex items-center justify-between gap-2 rounded-sm
-         px-3 py-3 flex-row md:max-w-screen-sm md:px-4  shadow-md ">
-                    <div className="text-center">
-
-                        <p className="mr-3">
+            <div style={{ position: 'relative' }}>
+                <div
+                    style={{
+                        border: '3px solid #eaeaea',
+                        margin: '10px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        padding: '0.75rem',
+                    }}
+                >
+                    <div style={{ textAlign: 'center' }}>
+                        <p style={{ marginRight: '0.75rem' }}>
                             This site uses cookies:
-                        </p>
-
+                            </p>
                     </div>
-                    <div className="flex gap-2">
-                        <Button
-                            variant="outline"
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                        <button
+                            style={{
+                                backgroundColor: 'red',
+                                color: 'white',
+                                padding: '0.5rem 1rem',
+
+                            }}
                             onClick={() => setCookieConsent(false)}
                         >
                             Decline
-                        </Button>
-                        <Button
+                        </button>
+                        <button
+                            style={{
+                                backgroundColor: 'green',
+                                color: 'white',
+                                padding: '0.5rem 1rem',
 
+                            }}
                             onClick={() => setCookieConsent(true)}
                         >
                             Accept
-                        </Button>
+                        </button>
                     </div>
                 </div>
             </div>
