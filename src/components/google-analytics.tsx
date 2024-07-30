@@ -1,10 +1,10 @@
 'use client';
 
 import Script from 'next/script'
-import {usePathname, useSearchParams} from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect } from "react";
 
-export default function GoogleAnalytics({GA_MEASUREMENT_ID} : {GA_MEASUREMENT_ID : string}){
+export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_ID: string }) {
 
     const pathname = usePathname()
     // SearchParams is a client side function.
@@ -23,12 +23,12 @@ export default function GoogleAnalytics({GA_MEASUREMENT_ID} : {GA_MEASUREMENT_ID
     // Script is added to the head of the document. To Begin, consent is denied.
     return (
         <>
-            <Script strategy="afterInteractive" 
-                src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}/>
+            <Script strategy="afterInteractive"
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
 
             <Script id='google-analytics' strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
-                __html: `
+                    __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -44,4 +44,5 @@ export default function GoogleAnalytics({GA_MEASUREMENT_ID} : {GA_MEASUREMENT_ID
                 }}
             />
         </>
-)}
+    )
+}

@@ -3,7 +3,7 @@
 
 // Retrieves a value from local storage and parses it as JSON.
 export function getLocalStorage(key: string, defaultValue: any) {
-    
+
     // Get the value from local storage
     const stickyValue = localStorage.getItem(key);
 
