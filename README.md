@@ -1,6 +1,7 @@
 # Google Analytics (GA4) implementation in Next.JS 14 (App Router) with Opt-in Cookie Banner
 
 This is a minimal example of Google Analytics (GA4) in Next.JS 14 with an opt-in cookie banner.
+You can see it at the bottom of the screen :)
 
 ## Setup
 
