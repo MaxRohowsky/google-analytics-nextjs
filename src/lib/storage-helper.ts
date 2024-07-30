@@ -1,10 +1,12 @@
-// lib/storageHelper.ts
 'use client';
 
+/**
+ * Retrieves a value from local storage and parses it as JSON.
+ */
 export function getLocalStorage(key: string, defaultValue: any) {
     // Get the value from local storage
     const stickyValue = localStorage.getItem(key);
-    //console.log("Sticky Value read from storage: ", stickyValue)
+
     // Check if stickyValue is not null or undefined
     if (stickyValue !== null && stickyValue !== undefined) {
         try {
@@ -18,10 +20,12 @@ export function getLocalStorage(key: string, defaultValue: any) {
     }
 }
 
-export function setLocalStorage(key: string, value:any){
+/**
+ * Stores a value in local storage after serializing it to JSON.
+ * 
+ * @param {string} key - The key under which the value will be stored in local storage.
+ * @param {any} value - The value to store in local storage.
+ */
+export function setLocalStorage(key: string, value: any) {
     localStorage.setItem(key, JSON.stringify(value));
 }
-
-
-
-

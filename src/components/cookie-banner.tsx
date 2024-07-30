@@ -3,10 +3,14 @@
 import { useState, useEffect } from "react";
 import { getLocalStorage, setLocalStorage } from "@/lib/storage-helper";
 
+/**
+ * CookieBanner component that displays a banner for cookie consent.
+ */
 export default function CookieBanner() {
     const [cookieConsent, setCookieConsent] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    // Retrieve cookie consent status from local storage on component mount
     useEffect(() => {
         const storedCookieConsent = getLocalStorage("cookie_consent", null);
         console.log("Cookie Consent retrieved from storage: ", storedCookieConsent);
@@ -14,6 +18,7 @@ export default function CookieBanner() {
         setIsLoading(false);
     }, []);
 
+    // Update local storage and Google Analytics consent status when cookieConsent changes
     useEffect(() => {
         if (cookieConsent !== null) {
             setLocalStorage("cookie_consent", cookieConsent);
@@ -28,64 +33,23 @@ export default function CookieBanner() {
         }
     }, [cookieConsent]);
 
-
-
+    // Do not render the banner if loading or consent is already given
     if (isLoading || cookieConsent !== null) {
         return null;
     }
 
-
     return (
-        <div
-            style={{
-                marginTop: '2.5rem',
-                display: cookieConsent == null ? 'block' : 'none',
-                position: 'fixed',
-                bottom: 40,
-                left: 0,
-                right: 0,
-                margin: '0 auto',
-                maxWidth: 'fit-content',
-                zIndex: 30,
-            }}
-        >
-            <div style={{ position: 'relative' }}>
-                <div
-                    style={{
-                        border: '3px solid #eaeaea',
-                        margin: '10px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.5rem',
-                        padding: '0.75rem',
-                    }}
-                >
-                    <div style={{ textAlign: 'center' }}>
-                        <p style={{ marginRight: '0.75rem' }}>
-                            This site uses cookies:
-                            </p>
+        <div className={`cookie-banner ${cookieConsent == null ? 'visible' : 'hidden'}`}>
+            <div className="cookie-banner-inner">
+                <div className="cookie-banner-content">
+                    <div className="cookie-banner-text">
+                        <p>This site uses cookies:</p>
                     </div>
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
-                        <button
-                            style={{
-                                backgroundColor: 'red',
-                                color: 'white',
-                                padding: '0.5rem 1rem',
-
-                            }}
-                            onClick={() => setCookieConsent(false)}
-                        >
+                    <div className="cookie-banner-buttons">
+                        <button className="decline-button" onClick={() => setCookieConsent(false)}>
                             Decline
                         </button>
-                        <button
-                            style={{
-                                backgroundColor: 'green',
-                                color: 'white',
-                                padding: '0.5rem 1rem',
-
-                            }}
-                            onClick={() => setCookieConsent(true)}
-                        >
+                        <button className="accept-button" onClick={() => setCookieConsent(true)}>
                             Accept
                         </button>
                     </div>

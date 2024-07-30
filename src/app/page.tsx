@@ -9,15 +9,35 @@ export default async function Home() {
       </h1>
 
       <p>
-        This is a simple example of how to implement Google Analytics (GA4) in
-        Next.JS 14 with the new App Router. The example includes an opt-in cookie
-        banner that will only load the GA4 script if the user agrees to the
-        cookies.
+        This is a minimal example of Google Analytics (GA4) in
+        Next.JS 14 with an opt-in cookie banner.
       </p>
 
       <p>
-        Cookie is stored in local storage.
+        Setup: 
       </p>
+
+      <ol>
+        <li>Install the node modules with "npm install".</li>
+        <li>Replace the Google Analytics ID "GA_MEASUREMENT_ID" in the layout.tsx file with your own.</li>
+        <li>Run the development server with "npm run dev".</li>
+      </ol>
+      
+
+      <p>
+        Information:
+      </p>
+
+      <ul>
+        <li>The cookie key (i.e. name) is "cookie_consent" and the value is set to true or false when you click Accept or Decline, respectively.</li> 
+        <li>The cookie is stored in local storage. If you Accept or Decline the Cookie, you'll have to delete it from local storage to reset the banner.</li>
+      </ul>
+      
+      <p>
+        Demo:
+      </p>
+      <img className="responsive-image" src="/demo.gif" alt="Demo" />
+      
 
     </>
   )
