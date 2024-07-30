@@ -3,9 +3,7 @@
 import { useState, useEffect } from "react";
 import { getLocalStorage, setLocalStorage } from "@/lib/storage-helper";
 
-/**
- * CookieBanner component that displays a banner for cookie consent.
- */
+// CookieBanner component that displays a banner for cookie consent.
 export default function CookieBanner() {
     const [cookieConsent, setCookieConsent] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
