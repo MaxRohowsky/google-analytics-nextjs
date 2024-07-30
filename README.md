@@ -15,4 +15,4 @@ This is a minimal example of Google Analytics (GA4) in Next.JS 14 with an opt-in
 
 ## Demo
 
-![Demo](/demo.gif)
+![Demo](public/demo.gif)
