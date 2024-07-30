@@ -3,10 +3,11 @@
     line-height: 1.3; /* Adjust the value as needed */
 }
 
-.container{
+.container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 20px;
+    margin-bottom: 200px; /* Adjust the value as needed */
 }
 .cookie-banner {
     margin-top: 2.5rem;
